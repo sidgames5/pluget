@@ -1,0 +1,27 @@
+name: HaxeCI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        haxe-version: ["4.2.5"]
+        target: [cpp]
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+    - run: sudo apt-get update
+    - uses: lix-pm/setup-lix@master
+    - uses: actions/checkout@v2
+    - run: haxe build.hxml
+    - uses: HaxeFlixel/setup-flixel@master
+      with:
+        haxe-version: ${{matrix.haxe-version}}
+        test-location: local
+        target: ${{matrix.target}}
+        run-tests: true
