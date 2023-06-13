@@ -16,10 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: sudo apt-get update
-    - uses: lix-pm/setup-lix@master
     - uses: actions/checkout@v2
+    - run: haxelib setup ~/haxelib
     - run: haxe build.hxml
-    - uses: HaxeFlixel/setup-flixel@master
       with:
         haxe-version: ${{matrix.haxe-version}}
         test-location: local
