@@ -1,4 +1,4 @@
-name: HaxeCI
+name: Haxe
 
 on:
   push:
@@ -15,12 +15,11 @@ jobs:
       fail-fast: false
     runs-on: ubuntu-latest
     steps:
-    - run: sudo apt-get update
-    - uses: actions/checkout@v2
-    - run: haxelib setup ~/haxelib
-    - run: haxe build.hxml
-      with:
-        haxe-version: ${{matrix.haxe-version}}
-        test-location: local
-        target: ${{matrix.target}}
-        run-tests: true
+      - name: Install Haxe
+      - run: sudo apt-get update
+      - run: sudo apt install haxe
+      - name: Setup Haxelib
+      - run: haxelib setup ~/haxelib
+      # - run: haxelib install <all dependencies>
+      - name: Build
+      - run: haxe build.hxml
