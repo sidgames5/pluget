@@ -1,5 +1,7 @@
 package com.sidgames5.pluget;
 
+import haxe.Json;
+import sys.io.File;
 import com.sidgames5.pluget.struct.Instance;
 
 class Database {
@@ -25,6 +27,13 @@ class Database {
 			loader: Loader,
 			mc_version: Version.toString(),
 			path: Path,
+			mods: new Array(),
 		};
+		File.saveContent(getPath(), Json.stringify(instance));
+	}
+
+	public static function getInstance(Name:String):Instance {
+		final fc = File.getContent(getPath());
+		return Json.parse(fc);
 	}
 }

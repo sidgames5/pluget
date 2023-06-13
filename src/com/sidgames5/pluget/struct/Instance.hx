@@ -5,4 +5,8 @@ typedef Instance = {
 	loader:String,
 	mc_version:String,
 	path:String,
+	mods:Array<{
+		name:String,
+		version:String,
+	}>
 }
