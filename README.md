@@ -1,2 +1,3 @@
-# pluget
+# Pluget
+
 A simple mod manager for minecraft
